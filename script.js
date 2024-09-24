@@ -1,50 +1,71 @@
 "use strict";
 
-const arr = [1, 2, 5, 8, 9];
+//передача по значению (примитивные виды данных)
 
-console.log(arr);
+let a = 5,
+b = a;
 
-//delete last element in array
-arr.pop();
-console.log(arr);
+b = b+5;
 
-arr.push(10); //добавить элемент в конец массива
-console.log(arr);
+console.log(b);
+console.log(a);
 
-for (let i = 0; i< arr.length; i++){
-    console.log(arr[i]);
+//передача по ссылке
+
+const obj = {
+    a: 5,
+    b: 1
 }
 
-for (let value of arr){ //не работает с объектом
-    console.log(value);
+const copy = obj;
+
+//хотя мы модифицируем копию, меняется и изначальный объект,
+// так как мы в копии имеем ссылку на него
+
+copy.a = 10;
+
+console.log(obj);
+console.log(copy);
+
+//клонирование объекта в новый объект
+const newObj = Object.assign({}, obj);
+newObj.a = 15;
+console.log(newObj);
+
+//склонировать массив
+const oldArray =['a', 'x', 'y'];
+const newArray = oldArray.slice();
+
+newArray = 5;
+console.log(oldArray);
+console.log(newArray);
+
+//Spread оператор, new features
+const video = ['youtube', 'vimeo', 'facebook'],
+blogs = ['wordpress', 'twitter', 'blogger'],
+internet = [...video, ...blogs, 'vk', 'instagram'];
+
+console.log(internet);
+
+function log(a, b, c){
+    console.log(a);
+    console.log(b);
+    console.log(c);
 }
 
-const arr2 = [1, 2, 5, 8, 9];
-//arr2[99] = 0; //так делать нельзя
+const num =[2, 5, 8];
 
-console.log(arr2.length);
-console.log(arr2);
+log(...num);
 
-//array methods
-//часто используются для перебора. недостаток - в отличие от обычных циклов - нельзя остановить
-arr2.forEach(function(item, i, arr2){ //callback function
-    console.log(`${i}: ${item} внутри массива ${arr2}`);
-});
+//клонирование массива с помощью Spread
 
-const str = prompt("", "");
-const products = str.split(",");
-console.log(products);
-products.sort(); //всегда сортирует как строки
-console.log(products);
+const ar = [4, 3, 0];
+const NewAr = [...ar];
 
-//обратная операция
-console.log(producrs.join("; "));
+//клонирование объекта с помощью Spread
+const aaa={
+    first:1,
+    second:2
+};
 
-//функция для сортировки чисел. передается в callback
-products.sort(compareNum);
-function compareNum(a, b){
-    return a-b;
-}
-console.log(products);
-
-//методы не работают для псевдомассивов
+const newA = {...aaa};
