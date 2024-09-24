@@ -1,16 +1,37 @@
 "use strict";
 
-const typeGoods = 'food';
+let number = 10;
+//замыкание (сама функция, вместе с тем что ей доступно)
+function showMessage(text){
+    console.log(text);
+    //let number = 20;
+    console.log(number);
+}
 
-//console.log('https://market.com/' + typegoods);
+showMessage("Hello!!!");
+console.log(number);
 
-//console.log('https://market.com/' + typegoods + '/' + '10');
+const server = function(){
+    console.log('server start...')
+};
 
-console.log('https://market.com/${typeGoods}');
+server();
 
-//https://market.com/games/strategy/10
-const section = "games";
-const type = "strategy";
-const page = 10;
+const calc = (x, y) => x + y;
+//const calc = (x, y) => {
+//    return x+y    
+//};
 
-console.log(`https://market.com/${section}/${type}/${page}`)
+//const calc = x => x+10;
+
+console.log(calc(10, 5));
+
+//Задание
+//Реализовать пример стрелочной функции
+//Функция должна выдавать приветствие и после приветствия выдать число пи
+const greet = () => {
+    console.log("HOLA!");
+    console.log(Math.PI)
+}
+
+greet();
