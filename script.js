@@ -1,94 +1,50 @@
 "use strict";
 
-//const obj = new Object(); //один из вариантов создания объектов
+const arr = [1, 2, 5, 8, 9];
 
-//самый частый вариант создания объекта
-const option = {
-    name:'test',
-    width: '640', 
-    height:'480',
-    colors:{
-        border:'black',
-        bg:'red'
-    }
-};
+console.log(arr);
 
-console.log(option.name);
-console.log(option['name']); //реже используемый вариант нотации
+//delete last element in array
+arr.pop();
+console.log(arr);
 
-console.log(option);
+arr.push(10); //добавить элемент в конец массива
+console.log(arr);
 
-for(let key in option){
-    console.log(`Свойство ${key} имеет значение ${option[key]}`)
+for (let i = 0; i< arr.length; i++){
+    console.log(arr[i]);
 }
 
-let counter = 0;
-for(let key in option){
-    if(typeof(option[key]) === 'object'){
-        for(let i in option[key]){
-            console.log(`Свойство ${i} имеет значение ${option[key][i]}`);
-            counter++;
-        }
-    }else{
-        console.log(`Свойство${key} имеет значение ${option[key]}`);
-        counter++;
-    }
+for (let value of arr){ //не работает с объектом
+    console.log(value);
 }
 
-console.log(counter);
+const arr2 = [1, 2, 5, 8, 9];
+//arr2[99] = 0; //так делать нельзя
 
-console.log(Object.keys(option));
-console.log(Object.keys(option).length);
+console.log(arr2.length);
+console.log(arr2);
 
-//добавим поведение для объекта
-const option2 = {
-    name: 'test',
-    width: '640',
-    height: '480',
-    colors:{
-        border: 'black',
-        bg: 'red'
-    },
-    makeTest: function(){
-        console.log("Yes!");
-    }
-};
+//array methods
+//часто используются для перебора. недостаток - в отличие от обычных циклов - нельзя остановить
+arr2.forEach(function(item, i, arr2){ //callback function
+    console.log(`${i}: ${item} внутри массива ${arr2}`);
+});
 
-//деструктуризация объекта (вытягивание нужных свойств)
-const{border, bg} = option2.colors;
-console.log(border);
+const str = prompt("", "");
+const products = str.split(",");
+console.log(products);
+products.sort(); //всегда сортирует как строки
+console.log(products);
 
-/*Задание
-Создайте объект game
-в нем 7 свойств
-одно из свойств сделайте в виде объекта, состоящего из 3 свойств
-добавьте 2 метода и вызовите их.
-С помощью деструктуризации выведите два любых свойства в консоль */
+//обратная операция
+console.log(producrs.join("; "));
 
-const game={
-    name: "The Last Andventure", 
-    rating: 4.8,
-    isMultiPlayer: true,
-    releaseYear: 2017,
-    creators:{
-        developer: "mizandarii",
-        producer: "bobkelso",
-        artist: "darkro"
-    },
-    genre: "horror",
-    downloads: 232,
+//функция для сортировки чисел. передается в callback
+products.sort(compareNum);
+function compareNum(a, b){
+    return a-b;
+}
+console.log(products);
 
-    summary: function(){
-        console.log(`name: ${this.name} \n rating: ${this.rating} \n genre: ${this.genre}`);
-    },
-    showRating: function(){
-        console.log(`the game has an average rating of ${this.rating}  with ${this.downloads} downloads`)
-    }
-
-};
-
-game.summary();
-game.showRating();
-
-const{developer, artist} = game.creators;
-console.log(developer)
+//методы не работают для псевдомассивов
